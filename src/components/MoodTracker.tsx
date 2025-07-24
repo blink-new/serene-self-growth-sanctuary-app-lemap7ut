@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
+import { Heart } from 'lucide-react'
 
 interface User {
   id: string
@@ -14,29 +15,57 @@ interface MoodTrackerProps {
 export default function MoodTracker({ user }: MoodTrackerProps) {
   return (
     <div className="space-y-8">
+      {/* Hero Section with Background Image */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center space-y-4"
+        className="relative rounded-3xl overflow-hidden"
       >
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          Mood Tracker
-        </h1>
-        <p className="text-muted-foreground text-lg">
-          Track your emotional journey
-        </p>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1659177139127-f23081f97a95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NzI1Njd8MHwxfHNlYXJjaHw1fHxtZWRpdGF0aW9uJTIwcGVhY2VmdWwlMjBuYXR1cmUlMjB6ZW4lMjBtaW5kZnVsbmVzc3xlbnwwfDB8fHwxNzUzMzIzOTg0fDA&ixlib=rb-4.1.0&q=80&w=1080')`
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-500/40 via-pink-400/30 to-purple-500/40" />
+        <div className="relative z-10 py-16 px-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg mb-4">
+            Mood Tracker
+          </h1>
+          <p className="text-xl text-white/90 drop-shadow-md max-w-2xl mx-auto">
+            Track your emotional journey and discover patterns in your wellbeing 💖
+          </p>
+        </div>
       </motion.div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Coming Soon</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground">
-            The mood tracking feature will be available soon. You'll be able to log your daily mood and see trends over time.
-          </p>
-        </CardContent>
-      </Card>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <Card className="bg-white/80 backdrop-blur-sm border-pink-500/10">
+          <CardContent className="p-8">
+            <div className="text-center space-y-6">
+              <div className="w-16 h-16 bg-pink-500/10 rounded-full flex items-center justify-center mx-auto">
+                <Heart className="w-8 h-8 text-pink-500" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-semibold text-gray-800 mb-2">Your Emotional Compass</h2>
+                <p className="text-muted-foreground max-w-md mx-auto">
+                  Log your daily emotions, track mood patterns, and gain insights into what influences your wellbeing.
+                </p>
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-pink-500 text-white rounded-xl font-medium hover:bg-pink-500/90 transition-colors shadow-lg"
+              >
+                Log Today's Mood
+              </motion.button>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
     </div>
   )
 }
